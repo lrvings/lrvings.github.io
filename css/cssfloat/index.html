@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Lrving`s Blog" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="CSS浮动是什么 float元素也称为浮动元素，设置了float属性的元素会根据属性值向左或向右浮动。 浮动元素会从普通文档流中脱离，但浮动元素影响的不仅是自己，它会影响周围的元素对齐进行环绕。 简单来说，就是让block元素无视float元素，让inline元素让流水一样围绕着float元素来实现浮动布局。   文字环绕图片是float典型的应用场景。float元素设计的初衷虽然是文字环绕图片,">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Css float浮动">
+<meta property="og:url" content="http:&#x2F;&#x2F;lwju.xyz&#x2F;Css&#x2F;cssfloat&#x2F;index.html">
+<meta property="og:site_name" content="Lrving`s Blog">
+<meta property="og:description" content="CSS浮动是什么 float元素也称为浮动元素，设置了float属性的元素会根据属性值向左或向右浮动。 浮动元素会从普通文档流中脱离，但浮动元素影响的不仅是自己，它会影响周围的元素对齐进行环绕。 简单来说，就是让block元素无视float元素，让inline元素让流水一样围绕着float元素来实现浮动布局。   文字环绕图片是float典型的应用场景。float元素设计的初衷虽然是文字环绕图片,">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;lwju.xyz&#x2F;images&#x2F;hehe1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;lwju.xyz&#x2F;images&#x2F;fu3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;lwju.xyz&#x2F;images&#x2F;fu1.png">
+<meta property="og:updated_time" content="2019-11-11T10:05:06.665Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;lwju.xyz&#x2F;images&#x2F;hehe1.png">
+  <link rel="canonical" href="http://lwju.xyz/Css/cssfloat/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Css float浮动 | Lrving`s Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lrving`s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">–- 要技艺超群，要予人温暖</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-note">
+      
+    
+
+    <a href="/note/" rel="section"><i class="fa fa-fw fa-sticky-note"></i>札记</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+    
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lwju.xyz/Css/cssfloat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lrving">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lrving`s Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            Css float浮动
+            
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-11 17:49:28 / 修改时间：18:05:06" itemprop="dateCreated datePublished" datetime="2019-11-11T17:49:28+08:00">2019-11-11</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Css/" itemprop="url" rel="index">
+                    <span itemprop="name">Css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/Css/cssfloat/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/Css/cssfloat/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>CSS浮动是什么</strong></p>
+<p>float元素也称为浮动元素，设置了float属性的元素会根据属性值向左或向右浮动。</p>
+<p>浮动元素会从普通文档流中脱离，但浮动元素影响的不仅是自己，它会影响周围的元素对齐进行环绕。</p>
+<p>简单来说，就是让block元素无视float元素，让inline元素让流水一样围绕着float元素来实现浮动布局。 </p>
+<blockquote>
+<p>文字环绕图片是float典型的应用场景。<br>float元素设计的初衷虽然是文字环绕图片,但是目前其最广泛的应用却是在布局领域。</p>
+</blockquote>
+<a id="more"></a>
+
+<h5 id="浮动带来的问题–高度塌陷"><a href="#浮动带来的问题–高度塌陷" class="headerlink" title="浮动带来的问题–高度塌陷"></a>浮动带来的问题–高度塌陷</h5><blockquote>
+<p>由于设置了float后元素脱离了标准流，从而导致了高度的塌陷，这里有一个很直观的例子</p>
+</blockquote>
+<h5 id="标准流：就是浏览器默认摆放盒子的顺序（从上往下、从左往右）"><a href="#标准流：就是浏览器默认摆放盒子的顺序（从上往下、从左往右）" class="headerlink" title="标准流：就是浏览器默认摆放盒子的顺序（从上往下、从左往右）"></a><strong>标准流：就是浏览器默认摆放盒子的顺序（从上往下、从左往右）</strong></h5><ul>
+<li><p><strong>浮动的元素会脱离标准流（脱标）</strong><br><img src="/images/hehe1.png" alt=""></p>
+</li>
+<li><p><strong>浮动的元素会覆盖在标准流的元素之上</strong><br><img src="/images/fu3.png" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><strong>浮动的规则：浮动找浮动</strong><blockquote>
+<p>浮动元素排列的时候，会找上一个浮动元素的后面<br><img src="/images/fu1.png" alt=""></p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p><strong>浮动的重点：浮动的元素只会影响下面的元素</strong></p>
+<blockquote>
+<p>浮动的元素受到上一个盒子边界的限制（块级元素独占一行）</p>
+</blockquote>
+</li>
+<li><p>浮动的元素有特殊的显示效果</p>
+<ul>
+<li>可以设置宽高<ul>
+<li>行可以显示多个<blockquote>
+<p>注意：浮动元素不能使用text-align或者margin：0 auto居中！</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>记忆：</strong></p>
+<blockquote>
+<ol>
+<li>浮动元素会脱标 ==&gt; 飘起来了（不占位置） ==&gt; 比标准流高半个级别</li>
+<li>浮动元素会受到上一个盒子边界的影响</li>
+<li>浮动元素可以设置宽高，一行可以显示多个</li>
+</ol>
+</blockquote>
+<h4 id="如何解决塌陷–清除浮动"><a href="#如何解决塌陷–清除浮动" class="headerlink" title="如何解决塌陷–清除浮动"></a>如何解决塌陷–清除浮动</h4><h4 id="清除浮动（清除浮动的影响）"><a href="#清除浮动（清除浮动的影响）" class="headerlink" title="清除浮动（清除浮动的影响）"></a>清除浮动（清除浮动的影响）</h4><blockquote>
+<p>浮动带来的问题：浮动元素撑不开父级容器</p>
+</blockquote>
+<h3 id="清除浮动主流方法有两种"><a href="#清除浮动主流方法有两种" class="headerlink" title="清除浮动主流方法有两种:"></a>清除浮动主流方法有两种:</h3><blockquote>
+<p>(1）使用clear属性清除浮动；<br>(2）给父元素设置 overflow:hidden;</p>
+</blockquote>
+<h4 id="1-利用clear属性"><a href="#1-利用clear属性" class="headerlink" title="1.利用clear属性"></a>1.利用clear属性</h4><p>在父元素里面的最后的添加一个块级元素给添加的块级元素设置清除浮动的核心代码 clear:both;</p>
+<blockquote>
+<p>缺点： 需要在页面中添加额外的标签，让页面的HTML结构变得更加复杂 有违结构与表现的分离</p>
+</blockquote>
+<p><strong>方式一：在设置float的兄弟元素最后设置一个元素，对其设置clear属性，如下</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">	<span class="selector-class">.div1</span>&#123;</span></span><br><span class="line"><span class="css">		<span class="selector-tag">height</span><span class="selector-pseudo">:100px</span>;</span></span><br><span class="line"><span class="css">		<span class="selector-tag">width</span><span class="selector-pseudo">:100px</span>;</span></span><br><span class="line"><span class="css">		<span class="selector-tag">background</span><span class="selector-pseudo">:blue</span>;</span></span><br><span class="line"><span class="css">		<span class="selector-tag">float</span><span class="selector-pseudo">:left</span>;</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="css">	<span class="selector-class">.div2</span>&#123;</span></span><br><span class="line"><span class="css">		<span class="selector-tag">height</span><span class="selector-pseudo">:10px</span>;</span></span><br><span class="line"><span class="css">		<span class="selector-tag">width</span><span class="selector-pseudo">:300px</span>;</span></span><br><span class="line"><span class="css">		<span class="selector-tag">background</span><span class="selector-pseudo">:red</span>;</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="css">	<span class="selector-class">.clearfix</span>&#123;</span></span><br><span class="line"><span class="css">		<span class="selector-tag">clear</span><span class="selector-pseudo">:both</span>;</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>这里是一个段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"clearfix"</span>&gt;</span><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>方式二： 方式一的缺点还是很明显的，就是平白无故的新增了一个没有内容的元素，使页面出现冗余；这里可以利用伪元素来达到同样的效果</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">示列一：</span><br><span class="line"><span class="selector-tag">main</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">		<span class="attribute">content</span>:<span class="string">""</span>;</span><br><span class="line">		<span class="attribute">display</span>:block;  </span><br><span class="line">		<span class="attribute">clear</span>:both;</span><br><span class="line">	&#125;</span><br><span class="line"> 示列二：单伪元素清除法</span><br><span class="line"> 一般伪元素清除法会使用 <span class="selector-class">.clearfix</span> 这个类名</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;    </span><br><span class="line"><span class="comment">/*伪元素必加的属性*/</span>   </span><br><span class="line">       <span class="attribute">content</span>: <span class="string">''</span>; </span><br><span class="line"><span class="comment">/*转换为块级元素*/</span>  </span><br><span class="line">      <span class="attribute">display</span>: block; </span><br><span class="line"><span class="comment">/*清除浮动的核心代码*/</span>   </span><br><span class="line">       <span class="attribute">clear</span>: both;</span><br><span class="line"><span class="comment">/*其实有上面三个属性已经可以生效了，但是可能在开发的时候，会有额外的几个属性！！*/</span></span><br><span class="line"><span class="comment">/*目的：在页面中看不到伪元素*/</span>  </span><br><span class="line"><span class="comment">/*避免生成内容破坏原有布局的高度。*/</span></span><br><span class="line">       <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">       <span class="attribute">line-height</span>: <span class="number">0</span>; </span><br><span class="line"><span class="comment">/*使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互;*/</span></span><br><span class="line">       <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>伪元素由CSS渲染，不会增加额外的html标签（兼容性各方面综合最佳）</p>
+</blockquote>
+<h4 id="2-使用-overflow-清除浮动"><a href="#2-使用-overflow-清除浮动" class="headerlink" title="2.使用 overflow 清除浮动"></a>2.使用 overflow 清除浮动</h4><p>在某些特定场景下使用不了步骤：直接给父元素设置 overflow:hidden;</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span>&#123;</span><br><span class="line">	<span class="attribute">overflow</span>:hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>优点：不存在结构和语义化问题，代码量极少</p>
+</blockquote>
+<blockquote>
+<p>缺点：overflow:hidden 内容增多时候容易造成不会自动换行导致内容被隐藏掉，无法显示需要溢出的元素； overflow:auto多层嵌套后，firefox与IE 可能会出现显示错误；</p>
+</blockquote>
+<h5 id="3-设置高度"><a href="#3-设置高度" class="headerlink" title="3.设置高度"></a>3.设置高度</h5><blockquote>
+<p>直接给父元素设置高度 简单粗暴，但是不推荐，不利于后期维护</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/css/" rel="tag"># css</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/Css/css-margin-collapse/" rel="next" title="CSS外边距margin重叠和塌陷">
+                  <i class="fa fa-chevron-left"></i> CSS外边距margin重叠和塌陷
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/Java/Javanote1/" rel="prev" title="JAVA笔记(一):基本数据类型和运算符">
+                  JAVA笔记(一):基本数据类型和运算符 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#浮动带来的问题–高度塌陷"><span class="nav-number">1.</span> <span class="nav-text">浮动带来的问题–高度塌陷</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#标准流：就是浏览器默认摆放盒子的顺序（从上往下、从左往右）"><span class="nav-number">2.</span> <span class="nav-text">标准流：就是浏览器默认摆放盒子的顺序（从上往下、从左往右）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何解决塌陷–清除浮动"><span class="nav-number"></span> <span class="nav-text">如何解决塌陷–清除浮动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除浮动（清除浮动的影响）"><span class="nav-number"></span> <span class="nav-text">清除浮动（清除浮动的影响）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除浮动主流方法有两种"><span class="nav-number"></span> <span class="nav-text">清除浮动主流方法有两种:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-利用clear属性"><span class="nav-number"></span> <span class="nav-text">1.利用clear属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-使用-overflow-清除浮动"><span class="nav-number"></span> <span class="nav-text">2.使用 overflow 清除浮动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-设置高度"><span class="nav-number">1.</span> <span class="nav-text">3.设置高度</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lrving</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/lrvings/lrvings.github.io" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;lrvings&#x2F;lrvings.github.io" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://space.bilibili.com/387429100" title="BiliBili &amp;rarr; https:&#x2F;&#x2F;space.bilibili.com&#x2F;387429100" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>BiliBili</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lrving</span>
+</div>
+<div class="powered-by">
+<span id="busuanzi_container_site_pv">
+总访问量<span style="color:#FA8072" id="busuanzi_value_site_pv"></span>次
+</span>|
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv">次</span>
+</span>
+</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共10.3k字</span>
+</div>
+<br>
+<span id="sitetime"></span>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var t1 = Date.UTC(2018,02,13,15,00,00); //北京时间2018-2-13 00:00:00
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+	siteTime();
+</script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'fNrIIEpzPFk99GNtfRlFtA7D-gzGzoHsz',
+    appKey: '2WMQSLiUxydQ68qLISeNhDhl',
+    placeholder: "Just go go",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

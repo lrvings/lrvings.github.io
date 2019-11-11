@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Lrving`s Blog" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="代码块高亮 图片链接和图片上传 LaTex数学公式 表格和流程图 离线写博客 丰富的快捷键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown语法">
+<meta property="og:url" content="http:&#x2F;&#x2F;lwju.xyz&#x2F;Markdown&#x2F;Markdown&#x2F;index.html">
+<meta property="og:site_name" content="Lrving`s Blog">
+<meta property="og:description" content="代码块高亮 图片链接和图片上传 LaTex数学公式 表格和流程图 离线写博客 丰富的快捷键">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-11T09:13:54.272Z">
+<meta name="twitter:card" content="summary">
+  <link rel="canonical" href="http://lwju.xyz/Markdown/Markdown/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Markdown语法 | Lrving`s Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lrving`s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">–- 要技艺超群，要予人温暖</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-note">
+      
+    
+
+    <a href="/note/" rel="section"><i class="fa fa-fw fa-sticky-note"></i>札记</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+    
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lwju.xyz/Markdown/Markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lrving">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lrving`s Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            Markdown语法
+            
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-09 10:18:01" itemprop="dateCreated datePublished" datetime="2019-06-09T10:18:01+08:00">2019-06-09</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-11 17:13:54" itemprop="dateModified" datetime="2019-11-11T17:13:54+08:00">2019-11-11</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Markdown/" itemprop="url" rel="index">
+                    <span itemprop="name">Markdown</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/Markdown/Markdown/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/Markdown/Markdown/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>代码块高亮</li>
+<li>图片链接和图片上传</li>
+<li>LaTex数学公式</li>
+<li>表格和流程图</li>
+<li>离线写博客</li>
+<li>丰富的快捷键<a id="more"></a>
+</li>
+</ul>
+<hr>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ul>
+<li>加粗<code>Ctrl + B</code></li>
+<li>斜体 <code>Ctrl + I</code></li>
+<li>引用 <code>Ctrl + Q</code></li>
+<li>插入链接 <code>Ctrl + L</code></li>
+<li>插入代码 <code>Ctrl + K</code></li>
+<li>插入图片 <code>Ctrl + G</code></li>
+<li>提升标题 <code>Ctrl + H</code></li>
+<li>有序列表 <code>Ctrl + O</code></li>
+<li>无序列表 <code>Ctrl + U</code></li>
+<li>横线 <code>Ctrl + R</code></li>
+<li>撤销 <code>Ctrl + Z</code></li>
+<li>重做 <code>Ctrl + Y</code></li>
+</ul>
+<hr>
+<h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h4><blockquote>
+<p>创建标题只需在文本前添加#。#的个数代表标题的级数。（还可以通过文本底下加- - -或===实现） </p>
+</blockquote>
+<h4 id="2-列表"><a href="#2-列表" class="headerlink" title="2.列表"></a>2.列表</h4><h5 id="创建无序列表只需在文本前加上-、-或-；有序列表可以直接在文本前加1-、2-、3-等。-列表也可以嵌套的"><a href="#创建无序列表只需在文本前加上-、-或-；有序列表可以直接在文本前加1-、2-、3-等。-列表也可以嵌套的" class="headerlink" title="创建无序列表只需在文本前加上-、+或 *；有序列表可以直接在文本前加1.、2.、3.等。(列表也可以嵌套的)"></a>创建无序列表只需在文本前加上-、+或 *；有序列表可以直接在文本前加1.、2.、3.等。(列表也可以嵌套的)</h5><blockquote>
+<ul>
+<li>项目</li>
+<li>项目<ul>
+<li>项目</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>项目1</li>
+<li>项目2</li>
+<li>项目3</li>
+</ol>
+</blockquote>
+<h5 id="创建一个自定义列表"><a href="#创建一个自定义列表" class="headerlink" title="创建一个自定义列表"></a>创建一个自定义列表</h5><blockquote>
+<dl><dt>Markdown<br>:  Text-to-HTML conversion tool<br>Authors<br>:  John</dt><dd>Luke</dd></dl></blockquote>
+<blockquote>
+<ul>
+<li><input disabled="" type="checkbox"> 计划任务</li>
+<li><input checked="" disabled="" type="checkbox"> 完成任务</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>注意：符号和文本之间需要有空格，前面要有空行。 </p>
+</blockquote>
+<h4 id="3-引用"><a href="#3-引用" class="headerlink" title="3.引用"></a>3.引用</h4><blockquote>
+<p>引用他人材料时，只需在开头加&gt;(可嵌套使用)。可以通过添加空行来结束引用。 </p>
+</blockquote>
+<h4 id="4-分割线"><a href="#4-分割线" class="headerlink" title="4.分割线"></a>4.分割线</h4><blockquote>
+<p>通过连续输入至少三个*实现，行内不能有其他东西。 </p>
+</blockquote>
+<h4 id="5-目录"><a href="#5-目录" class="headerlink" title="5.目录"></a>5.目录</h4><blockquote>
+<p>在合适的地方输入[toc],便会根据标题自动生成可跳转的目录(注意：前面需要有空行)。 </p>
+</blockquote>
+<h4 id="6-脚注"><a href="#6-脚注" class="headerlink" title="6.脚注"></a>6.脚注</h4><blockquote>
+<p>定义：一个具有注脚的文本。[^2]<br>使用：[^2]: 注脚的解释<br>效果：<br>一个具有注脚的文本。[^2]<br>[^2]: 注脚的解释</p>
+</blockquote>
+<h4 id="7-笔记本和标签"><a href="#7-笔记本和标签" class="headerlink" title="7.笔记本和标签"></a>7.笔记本和标签</h4><blockquote>
+<p>语法为@(笔记本)[标签A|标签B],可以添加笔记本和与标签。 绑定印象笔记（Evernote）账号后，能够同步文章到印象笔记相应笔记本目录下。 </p>
+</blockquote>
+<h4 id="8-改变文本的样式、斜体、粗体与删除线"><a href="#8-改变文本的样式、斜体、粗体与删除线" class="headerlink" title="8.改变文本的样式、斜体、粗体与删除线"></a>8.改变文本的样式、斜体、粗体与删除线</h4><p>粗体（快捷键Ctrl+B）、斜体（快捷键Ctrl+I）及 删除线 的语法如下。</p>
+<blockquote>
+<p>*斜体*<br>*<em>粗体**<br>*<strong>加粗的斜体*</strong><br>*强调文本</em> <em>强调文本</em><br>*<em>加粗文本*</em> <strong>加粗文本</strong><br>==标记文本==<br><del>\</del>删除文本<del>~<br>H</del>2~O is是液体。<br>2^10^ 运算结果是 1024.</p>
+<ul>
+<li>文本注释也是必不可少的<br>Markdown将文本转换为 HTML。</li>
+</ul>
+<p>*[HTML]:   超文本标记语言</p>
+</blockquote>
+<h4 id="9-图片与链接"><a href="#9-图片与链接" class="headerlink" title="9.图片与链接"></a>9.图片与链接</h4><ul>
+<li>图片插入快捷键Ctrl+G,将出现以下对话框，直接复制或插入。</li>
+<li>链接插入快捷键Ctrl+L,将出现以下对话框，输入链接。</li>
+<li>图片和链接语法如下,可以手动输入。<blockquote>
+<p>1.! [name] (URL) ：<strong>示列</strong>:！[图片](./xxx.png )<br>![Alt](<a href="https://avatar.csdn.net/7/7/B/1_ralf_hx163com.jpg" target="_blank" rel="noopener">https://avatar.csdn.net/7/7/B/1_ralf_hx163com.jpg</a>)<br>2.[链接](<a href="http://www.lwju.xyz)**示列**：[小文博客]" target="_blank" rel="noopener">http://www.lwju.xyz)**示列**：[小文博客]</a>(<a href="http://www.lwju.xyz" target="_blank" rel="noopener">http://www.lwju.xyz</a> )<br>3.链接: [link](<a href="http://www.lwju.xyz" target="_blank" rel="noopener">http://www.lwju.xyz</a>). <strong>示列</strong>：链接: <a href="http://www.lwju.xyz" target="_blank" rel="noopener">小文博客</a>.<br>图片与链接的格式相似，相差一个！。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="10-设定居中、居左、居右-、字体、字号与颜色"><a href="#10-设定居中、居左、居右-、字体、字号与颜色" class="headerlink" title="10. 设定居中、居左、居右 、字体、字号与颜色"></a>10. 设定居中、居左、居右 、字体、字号与颜色</h4><p>在原生减价中对齐文本是不可能的。不过，您可以使用内嵌HTML标签对齐文本。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&lt;div align = "center"&gt;居中&lt;/div&gt;</span><br><span class="line">&gt;&lt;div style="text-align: center"&gt; 居中 &lt;/div&gt;</span><br><span class="line">&gt;&lt;div style="text-align: right"&gt; 右对齐 &lt;/div&gt;</span><br><span class="line">&gt;&lt;div style="text-align: left"&gt; 左对齐 &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通文本内容具有一定的格式。但是它本身是不支持修改字体、字号与颜色等功能的！</li>
+<li>对，就是内嵌HTML，接下来要讲的功能就需要使用内嵌HTML的方法来实现。</li>
+<li>字体，字号和颜色编辑如下代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&lt;font face=&quot;黑体&quot;&gt;我是黑体字&lt;/font&gt;</span><br><span class="line">&gt;&lt;font face=&quot;微软雅黑&quot;&gt;我是微软雅黑&lt;/font&gt;</span><br><span class="line">&gt;&lt;font face=&quot;STCAIYUN&quot;&gt;我是华文彩云&lt;/font&gt;</span><br><span class="line">&gt;&lt;font color=#0099ff size=7 face=&quot;黑体&quot;&gt;color=#0099ff size=72 face=&quot;黑体&quot;&lt;/font&gt;</span><br><span class="line">&gt;&lt;font color=#00ffff size=72&gt;color=#00ffff&lt;/font&gt;</span><br><span class="line">&gt;&lt;font color=red size=72&gt;color=red&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+Size：规定文本的尺寸大小。可能的值：从 1 到 7 的数字。浏览器默认值是 3</li>
+</ul>
+<h4 id="11-背景色"><a href="#11-背景色" class="headerlink" title="11. 背景色"></a>11. 背景色</h4><blockquote>
+<p>Markdown本身不支持背景色设置，需要采用内置html的方式实现：借助 table, tr, td 等表格标签的 &gt;bgcolor 属性来实现背景色的功能。举例如下：<br><code>&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=orange&gt;背景色是：orange&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code></p>
+<table><tr><td bgcolor=orange>背景色是：orange</td></tr></table>
+</blockquote>
+<h4 id="12-代码块"><a href="#12-代码块" class="headerlink" title="12.代码块"></a>12.代码块</h4><p>代码块可分为行内代码和区块代码。他们都是通过反引号“ ` ”实现的。行内代码前后只需要一个反引号；区块代码则需要三个反引号。 </p>
+<ul>
+<li>如何插入一段漂亮的代码片<br>下面展示同样高亮的 <code>代码片</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// An highlighted block</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">'bar'</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="13-转义"><a href="#13-转义" class="headerlink" title="13. 转义"></a>13. 转义</h4><blockquote>
+<p>\ +你要转义的字符<br><code>^@^</code></p>
+</blockquote>
+<h4 id="14-制作待办事宜"><a href="#14-制作待办事宜" class="headerlink" title="14.制作待办事宜"></a>14.制作待办事宜</h4><blockquote>
+<p>- [ ] 未处理<br>- [x]已处理</p>
+</blockquote>
+<h4 id="15-LaTeX数学公式"><a href="#15-LaTeX数学公式" class="headerlink" title="15.LaTeX数学公式"></a>15.LaTeX数学公式</h4><h5 id="标记公式"><a href="#标记公式" class="headerlink" title="标记公式"></a>标记公式</h5><p>LaTeX的数学公式有两种：行内公式和块级公式。行内公式放在文中与其它文字混编，块级公式单独成行。都使用美元符号进行标记显示。</p>
+<blockquote>
+<ul>
+<li>行内公式<br>标记方法：使用一个美元符号包围起来<br>行内公式：$\Gamma(n) = (n-1)!\quad\forall nin\mathbb N$<br>效果：$\Gamma(n) = (n-1)!\quad\forall nin\mathbb N$<br>上标和下标<br>^表示上标，_表示下标。如果上下标的内容多于一个字符，要用{}把这些内容括起来当成一个整体。上下标是可以嵌套的，也可以同时使用。<br>例子：  $x^{y^z}=(1+e^x)^{-2xy^w}$
+</li>
+</ul>
+</blockquote>
+<h4 id="16-表格"><a href="#16-表格" class="headerlink" title="16.表格"></a>16.表格</h4><blockquote>
+<p>通过管线图的方式实现。示列如下：<br>| \姓名  | 年龄 | 性别  |<br>| :——– | -——-:| :——: |<br>| 王某| 20 | 男  |<br>效果如下：<br>| 姓名  | 年龄 | 性别  |<br>| :——– | ——–:| :——: |<br>| 王某| 20 | 男  |</p>
+</blockquote>
+<blockquote>
+<h5 id="设定内容居中、居左、居右"><a href="#设定内容居中、居左、居右" class="headerlink" title="设定内容居中、居左、居右"></a>设定内容居中、居左、居右</h5><p>使用<code>:---------:</code>居中<br>使用<code>:----------</code>居左<br>使用<code>----------:</code>居右<br>| 第一列       | 第二列         | 第三列        |<br>|:———–:| ————-:|:————-|<br>| 第一列文本居中 | 第二列文本居右  | 第三列文本居左 | </p>
+</blockquote>
+<h4 id="17-流程图"><a href="#17-流程图" class="headerlink" title="17.流程图"></a>17.流程图</h4><blockquote>
+<p>流程图的代码需要放在一个语法类型为flow的代码块中。具体步骤如下：</p>
+</blockquote>
+<blockquote>
+<p>定义节点：节点类型有start、operation、condition、end等<br>连接节点：使用-&gt;</p>
+</blockquote>
+<h4 id="18-新的甘特图功能，丰富你的文章"><a href="#18-新的甘特图功能，丰富你的文章" class="headerlink" title="18.新的甘特图功能，丰富你的文章"></a>18.新的甘特图功能，丰富你的文章</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gantt</span><br><span class="line">        dateFormat  YYYY-MM-DD</span><br><span class="line">        title Adding GANTT diagram functionality to mermaid</span><br><span class="line">        section 现有任务</span><br><span class="line">        已完成               :done,    des1, 2014-01-06,2014-01-08</span><br><span class="line">        进行中               :active,  des2, 2014-01-09, 3d</span><br><span class="line">        计划一               :         des3, after des2, 5d</span><br><span class="line">        计划二               :         des4, after des3, 5d</span><br></pre></td></tr></table></figure>
+<h4 id="19-UML-图表"><a href="#19-UML-图表" class="headerlink" title="19. UML 图表"></a>19. UML 图表</h4><p>可以使用UML图表进行渲染。 <a href="https://mermaidjs.github.io/" target="_blank" rel="noopener">Mermaid</a>. 例如下面产生的一个序列图：:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">张三 -&gt;&gt; 李四: 你好！李四, 最近怎么样?</span><br><span class="line">李四--&gt;&gt;王五: 你最近怎么样，王五？</span><br><span class="line">李四--x 张三: 我很好，谢谢!</span><br><span class="line">李四-x 王五: 我很好，谢谢!</span><br><span class="line">Note right of 王五: 李四想了很长时间, 文字太长了&lt;br/&gt;不适合放在一行.</span><br><span class="line"></span><br><span class="line">李四--&gt;&gt;张三: 打量着王五...</span><br><span class="line">张三-&gt;&gt;王五: 很好... 王五, 你怎么样?</span><br></pre></td></tr></table></figure>
+
+<p>这将产生一个流程图。:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[长方形] -- 链接 --&gt; B((圆))</span><br><span class="line">A --&gt; C(圆角长方形)</span><br><span class="line">B --&gt; D&#123;% raw %&#125;菱形&#125;&#123;% endraw %&#125;</span><br><span class="line">C --&gt; D</span><br></pre></td></tr></table></figure>
+
+<h4 id="20-FLowchart流程图"><a href="#20-FLowchart流程图" class="headerlink" title="20. FLowchart流程图"></a>20. FLowchart流程图</h4><p>我们依旧会支持flowchart的流程图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">flowchat</span><br><span class="line">st=&gt;start: 开始</span><br><span class="line">e=&gt;end: 结束</span><br><span class="line">op=&gt;operation: 我的操作</span><br><span class="line">cond=&gt;condition: 确认？</span><br><span class="line"></span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br></pre></td></tr></table></figure>
+<p>####21.离线写博客</p>
+<blockquote>
+<p>即使用户在没有网络的情况下，也可以通过本编辑器离线写博客（直接在曾经使用过的浏览器中输入write.blog.csdn.net/mdeditor即可。Markdown编辑器使用浏览器离线存储将内容保存在本地。</p>
+</blockquote>
+<blockquote>
+<p>用户写博客的过程中，内容实时保存在浏览器缓存中，在用户关闭浏览器或者其它异常情况下，内容不会丢失。用户再次打开浏览器时，会显示上次用户正在编辑的没有发表的内容。</p>
+</blockquote>
+<blockquote>
+<p>博客发表后，本地缓存将被删除。　</p>
+</blockquote>
+<blockquote>
+<p>用户可以选择 把正在写的博客保存到服务器草稿箱，即使换浏览器或者清除缓存，内容也不会丢失。</p>
+</blockquote>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h5 id="Markdowm首行缩进方法"><a href="#Markdowm首行缩进方法" class="headerlink" title="Markdowm首行缩进方法"></a>Markdowm首行缩进方法</h5><p>一个空格大小的表示：&amp; ensp;或&amp; #8194;，此时只要在相应需要缩进的段落前加上 4个 如上的标记即可，注意要带上分号。<br>两个空格的大小表示：&amp; emsp;或&amp; #8195;，同理，使用2个即可缩进2个汉字，推荐使用该方式。<br>不换行空格：&amp; bsp;或&#160;，使用4个&amp; #160;即可。</p>
+<h5 id="HTML中的实体空格"><a href="#HTML中的实体空格" class="headerlink" title="HTML中的实体空格"></a>HTML中的实体空格</h5><p>  HTML提供了5种空格实体（space entity），它们拥有不同的宽度，非断行空格（&amp; nbsp;）是常规空格的宽度，可运行于所有主流浏览器。其他几种空格（&amp; ensp; &amp; emsp; &amp; thinsp; &amp; zwnj; &amp; zwj;）在不同浏览器中宽度各异。</p>
+<ul>
+<li><p>&amp; nbsp;</p>
+<blockquote>
+<p>它叫不换行空格，全称是 No-Break Space，它是最常见和我们使用最多的空格，大多数的人可能只接触了&nbsp;，它是按下space键产生的空格。在HTML中，如果你用空格键产生此空格，空格是不会累加的（只算1个）。要使用html实体表示才可累加，该空格占据宽度受字体影响明显而强烈。</p>
+</blockquote>
+</li>
+<li><p>&amp; ensp;</p>
+</li>
+</ul>
+<blockquote>
+<p>它叫“半角空格”，全称是 En Space，en是字体排印学的计量单位，为em宽度的一半。段落前空格根据定义，它等同于字体度的一半（如16px字体中就是8px）。名义上是小写字母n的宽度。此空格传承空格家族一贯的特性：透明的，此空格有个相当稳健的特性，就是其占据的宽度正好是1/2个中文宽度，而且基本上不受字体影响。</p>
+</blockquote>
+<ul>
+<li>&amp; emsp;</li>
+</ul>
+<blockquote>
+<p>它叫“全角空格”，全称是 Em Space，em是字体排印学的计量单位，相当于当前指定的点数。例如，1 em在16px的字体中就是16px。此空格也传承空格家族一贯的特性：透明的，此空格也有个相当稳健的特性，就是其占据的宽度正好是1个中文宽度，而且基本上不受字体影响。</p>
+</blockquote>
+<ul>
+<li>&amp; thinsp;</li>
+</ul>
+<blockquote>
+<p>它叫“窄空格”，全称是 Thin Space。我们不妨称之为“瘦弱空格”，就是该空格长得比较瘦弱，身体单薄，占据的宽度比较小。它是em之六分之一宽。</p>
+</blockquote>
+<ul>
+<li>&amp; zwnj;</li>
+</ul>
+<blockquote>
+<p>它叫零宽不连字，全称是 Zero Width Non Joiner，简称“ZWNJ”，是一个不打印字符，放在电子文本的两个字符之间，抑制本来会发生的连字，而是以这两个字符原本的字形来绘制。Unicode中的零宽不连字字符映射为“”（zero width non-joiner，U+200C），HTML字符值引用为： “‌”</p>
+</blockquote>
+<ul>
+<li>&amp; zwj;</li>
+</ul>
+<blockquote>
+<p>它叫零宽连字，全称是 Zero Width Joiner，简称“ZWJ”，是一个不打印字符，放在某些需要复杂排版语言（如阿拉伯语、印地语）的两个字符之间，使得这两个本不会发生连字的字符产生了连字效果。零宽连字符的Unicode码位是U+200D (HTML: ‍ ‍）。<br>4. 锚点<br>网页中，锚点其实就是页内超链接，也就是链接本文档内部的某些元素，实现当前页面中的跳转。比如我这里写下一个锚点，点击回到目录，就能跳转到目录。 在目录中点击这一节，就能跳过来。还有下一节的注脚。这些根本上都是用锚点来实现的。</p>
+</blockquote>
+<p>注意： </p>
+<ol>
+<li>Markdown Extra 只支持在标题后插入锚点，其它地方无效。 </li>
+<li>Leanote 编辑器右侧显示效果区域暂时不支持锚点跳转，所以点来点去发现没有跳转不必惊慌，但是你发布成笔记或博文后是支持跳转的。</li>
+</ol>
+<p>语法描述：<br>在你准备跳转到的指定标题后插入锚点{#标记}，然后在文档的其它地方写上连接到锚点的链接。</p>
+<p>代码：跳转到<a href="#index">标题</a></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/DarkTime/" rel="prev" title="暗时间">
+                  暗时间 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷键"><span class="nav-number">1.</span> <span class="nav-text">快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-标题"><span class="nav-number">1.1.</span> <span class="nav-text">1.标题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-列表"><span class="nav-number">1.2.</span> <span class="nav-text">2.列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建无序列表只需在文本前加上-、-或-；有序列表可以直接在文本前加1-、2-、3-等。-列表也可以嵌套的"><span class="nav-number">1.2.1.</span> <span class="nav-text">创建无序列表只需在文本前加上-、+或 *；有序列表可以直接在文本前加1.、2.、3.等。(列表也可以嵌套的)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建一个自定义列表"><span class="nav-number">1.2.2.</span> <span class="nav-text">创建一个自定义列表</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-引用"><span class="nav-number">1.3.</span> <span class="nav-text">3.引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-分割线"><span class="nav-number">1.4.</span> <span class="nav-text">4.分割线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-目录"><span class="nav-number">1.5.</span> <span class="nav-text">5.目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-脚注"><span class="nav-number">1.6.</span> <span class="nav-text">6.脚注</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-笔记本和标签"><span class="nav-number">1.7.</span> <span class="nav-text">7.笔记本和标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-改变文本的样式、斜体、粗体与删除线"><span class="nav-number">1.8.</span> <span class="nav-text">8.改变文本的样式、斜体、粗体与删除线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-图片与链接"><span class="nav-number">1.9.</span> <span class="nav-text">9.图片与链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-设定居中、居左、居右-、字体、字号与颜色"><span class="nav-number">1.10.</span> <span class="nav-text">10. 设定居中、居左、居右 、字体、字号与颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-背景色"><span class="nav-number">1.11.</span> <span class="nav-text">11. 背景色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-代码块"><span class="nav-number">1.12.</span> <span class="nav-text">12.代码块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-转义"><span class="nav-number">1.13.</span> <span class="nav-text">13. 转义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-制作待办事宜"><span class="nav-number">1.14.</span> <span class="nav-text">14.制作待办事宜</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-LaTeX数学公式"><span class="nav-number">1.15.</span> <span class="nav-text">15.LaTeX数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#标记公式"><span class="nav-number">1.15.1.</span> <span class="nav-text">标记公式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-表格"><span class="nav-number">1.16.</span> <span class="nav-text">16.表格</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设定内容居中、居左、居右"><span class="nav-number">1.16.1.</span> <span class="nav-text">设定内容居中、居左、居右</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-流程图"><span class="nav-number">1.17.</span> <span class="nav-text">17.流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-新的甘特图功能，丰富你的文章"><span class="nav-number">1.18.</span> <span class="nav-text">18.新的甘特图功能，丰富你的文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-UML-图表"><span class="nav-number">1.19.</span> <span class="nav-text">19. UML 图表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-FLowchart流程图"><span class="nav-number">1.20.</span> <span class="nav-text">20. FLowchart流程图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number"></span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Markdowm首行缩进方法"><span class="nav-number">0.0.1.</span> <span class="nav-text">Markdowm首行缩进方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTML中的实体空格"><span class="nav-number">0.0.2.</span> <span class="nav-text">HTML中的实体空格</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lrving</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/lrvings/lrvings.github.io" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;lrvings&#x2F;lrvings.github.io" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://space.bilibili.com/387429100" title="BiliBili &amp;rarr; https:&#x2F;&#x2F;space.bilibili.com&#x2F;387429100" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>BiliBili</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lrving</span>
+</div>
+<div class="powered-by">
+<span id="busuanzi_container_site_pv">
+总访问量<span style="color:#FA8072" id="busuanzi_value_site_pv"></span>次
+</span>|
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv">次</span>
+</span>
+</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共10.3k字</span>
+</div>
+<br>
+<span id="sitetime"></span>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var t1 = Date.UTC(2018,02,13,15,00,00); //北京时间2018-2-13 00:00:00
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+	siteTime();
+</script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'fNrIIEpzPFk99GNtfRlFtA7D-gzGzoHsz',
+    appKey: '2WMQSLiUxydQ68qLISeNhDhl',
+    placeholder: "Just go go",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

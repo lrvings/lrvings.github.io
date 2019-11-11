@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Lrving`s Blog" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="&amp;nbsp; &amp;nbsp;  &amp;nbsp; &amp;nbsp;合并现象就是所谓的外边距重叠，当两个垂直外边距相遇时，它们将形成一个外边距。合并的外边距的高度等于两个发生合并的外边距的高度中的较大者。 &amp;nbsp; &amp;nbsp;  &amp;nbsp; &amp;nbsp;margin 塌陷 是在CSS的盒子模型中出现的一种现象，描述的是当父元素包裹着一个子元素的时候，当给子元素设置margin-top属性时，此时只是想">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS外边距margin重叠和塌陷">
+<meta property="og:url" content="http:&#x2F;&#x2F;lwju.xyz&#x2F;Css&#x2F;css-margin-collapse&#x2F;index.html">
+<meta property="og:site_name" content="Lrving`s Blog">
+<meta property="og:description" content="&amp;nbsp; &amp;nbsp;  &amp;nbsp; &amp;nbsp;合并现象就是所谓的外边距重叠，当两个垂直外边距相遇时，它们将形成一个外边距。合并的外边距的高度等于两个发生合并的外边距的高度中的较大者。 &amp;nbsp; &amp;nbsp;  &amp;nbsp; &amp;nbsp;margin 塌陷 是在CSS的盒子模型中出现的一种现象，描述的是当父元素包裹着一个子元素的时候，当给子元素设置margin-top属性时，此时只是想">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-11T09:43:16.211Z">
+<meta name="twitter:card" content="summary">
+  <link rel="canonical" href="http://lwju.xyz/Css/css-margin-collapse/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>CSS外边距margin重叠和塌陷 | Lrving`s Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lrving`s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">–- 要技艺超群，要予人温暖</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-note">
+      
+    
+
+    <a href="/note/" rel="section"><i class="fa fa-fw fa-sticky-note"></i>札记</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+    
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lwju.xyz/Css/css-margin-collapse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lrving">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lrving`s Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            CSS外边距margin重叠和塌陷
+            
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-11 17:25:22 / 修改时间：17:43:16" itemprop="dateCreated datePublished" datetime="2019-11-11T17:25:22+08:00">2019-11-11</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Css/" itemprop="url" rel="index">
+                    <span itemprop="name">Css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/Css/css-margin-collapse/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/Css/css-margin-collapse/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>&nbsp; &nbsp;  &nbsp; &nbsp;合并现象就是所谓的外边距重叠，当两个垂直外边距相遇时，它们将形成一个外边距。合并的外边距的高度等于两个发生合并的外边距的高度中的较大者。</p>
+<p>&nbsp; &nbsp;  &nbsp; &nbsp;margin 塌陷 是在CSS的盒子模型中出现的一种现象，描述的是当父元素包裹着一个子元素的时候，当给子元素设置margin-top属性时，此时只是想让子元素的边框距离父元素边框有一段距离，而却出现了父元素的顶端距离body这个边框出现了位移，这就是margin-top塌陷的现象。</p>
+<p>  <strong>CSS margin collapse 就是边界塌陷或者说是边界重叠</strong></p>
+<a id="more"></a>
+<h4 id="首先了解下BFC"><a href="#首先了解下BFC" class="headerlink" title="首先了解下BFC"></a>首先了解下BFC</h4><p>  &nbsp; &nbsp;  &nbsp; &nbsp;<strong>BFC</strong>: <code>block formating context</code> - 块级格式化上下文，每一个盒子当中都有一套正常的渲染规则，但是我们可以通过一些语法，来触发bfc，让这个盒子的渲染规则不一样！ 就是这个渲染规则的改变，刚好就解决了margin塌陷的问题，下面是触发bfc的语法：</p>
+<blockquote>
+<ol>
+<li>position： absolute；</li>
+<li>display：inline-block;</li>
+<li>float：left / right;</li>
+<li>overflow: hidden;</li>
+</ol>
+</blockquote>
+<h4 id="BFC作用"><a href="#BFC作用" class="headerlink" title="BFC作用"></a>BFC作用</h4><p><strong>消除Margin Collapse</strong></p>
+<p>在正常情况下，在一个容器内的所有box将会由上至下依次垂直排列，即我们所说的一个元素占一行，并切垂直相邻的距离(即margin)是由各自的margin决定的，而不是两个margin的叠加。</p>
+<h3 id="margin的特殊现象"><a href="#margin的特殊现象" class="headerlink" title="margin的特殊现象"></a>margin的特殊现象</h3><hr>
+<h4 id="margin-重叠现象"><a href="#margin-重叠现象" class="headerlink" title="margin 重叠现象"></a>margin 重叠现象</h4><p>正常情况下: 当两个盒子水平布局时,左右的margin会叠加；<br> 但是当两个盒子垂直布局时，会出现合并现象<br> 两者之间距离全部都为正值，取最大者；没有正值，则都取绝对值，然后用0减去最大值</p>
+<h6 id="正常现象："><a href="#正常现象：" class="headerlink" title="正常现象："></a>正常现象：</h6><blockquote>
+<p>比如：当两个盒子水平布局时，左右的margin会叠加，盒子之间的距离为margin的和。</p>
+</blockquote>
+<h6 id="合并现象："><a href="#合并现象：" class="headerlink" title="合并现象："></a>合并现象：</h6><blockquote>
+<p>当两个盒子垂直布局时，上下的margin会合并，盒子之间的距离为margin的最大值</p>
+</blockquote>
+<h5 id="重叠现象解决方案："><a href="#重叠现象解决方案：" class="headerlink" title="重叠现象解决方案："></a>重叠现象解决方案：</h5><ol>
+<li><strong>相邻元素</strong><ul>
+<li>底部元素设置为浮动 float:left;</li>
+<li>底部元素的position的值为absolute/fixed</li>
+<li>在设置margin-top/bottom值时统一设置上或者下</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><strong>嵌套元素</strong></li>
+</ol>
+<ul>
+<li>外层元素添加padding</li>
+<li>外层元素 overflow:hidden;</li>
+<li>外层元素透明边框 border:1px solid transparent;</li>
+<li>内层元素绝对定位 postion:absolute:</li>
+<li>内层元素 加float:left;或display:inline-block;</li>
+</ul>
+<hr>
+<h3 id="margin的塌陷现象（重要）"><a href="#margin的塌陷现象（重要）" class="headerlink" title="margin的塌陷现象（重要）"></a>margin的塌陷现象（重要）</h3><p>互相嵌套的块级元素，垂直外边距会塌陷</p>
+<h4 id="塌陷现象："><a href="#塌陷现象：" class="headerlink" title="塌陷现象："></a>塌陷现象：</h4><p>互相嵌套的块级元素，如果给子元素设置margin-top，此时父元素会一起往下移动！！！</p>
+<h4 id="盒子塌陷"><a href="#盒子塌陷" class="headerlink" title="盒子塌陷"></a>盒子塌陷</h4><p>   &nbsp; &nbsp; 当父元素没设置足够大小的时候，而子元素设置了浮动的属性，子元素就会跳出父元素的边界（脱离文档流），尤其是当父元素的高度为auto时，而父元素中又没有其它非浮动的可见元素时，父盒子的高度就会直接塌陷为零， 我们称这是 CSS 高度塌陷。</p>
+<h4 id="塌陷解决方法"><a href="#塌陷解决方法" class="headerlink" title="塌陷解决方法"></a>塌陷解决方法</h4><ol>
+<li>给父元素增加边框。</li>
+<li>给父盒子加<code>padding-top</code></li>
+<li>给父元素设置<code>display：table;</code></li>
+<li>利用浮动给外部的父盒子也添加浮动，让其也脱离标准文档流，但是对页面的布局不是很好，不易维护。</li>
+<li>给父元素添加<code>position:fixed;</code>定位的知识，将父元素显示在固定位置，就不会受margin-top塌陷的问题影响</li>
+<li>父盒子里最下方引入清除浮动块。最简单的有：<code>&lt;br style=&quot;clear:both;&quot;/&gt;</code></li>
+<li>父盒子设置属性<code>overflow: hidden</code> （该属性触发了父盒子的BFC：块级格式化上下文）<ul>
+<li><code>overflow:auto;</code> 有可能出现滚动条，影响美观。</li>
+<li><code>overflow:hidden;</code> 可能会带来内容不可见的问题。</li>
+</ul>
+</li>
+<li>伪元素清除浮动。<ul>
+<li>外部盒子的after伪元素设置clear属性。</li>
+<li>使用伪元素有一个必加属性 <code>content:&#39;&#39;</code>;content属性值里写标签里面的问题</li>
+<li>伪元素默认是行内元素<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#parent</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">            <span class="attribute">clear</span>: both;</span><br><span class="line">            <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">display</span>: block;</span><br><span class="line">            <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/css/" rel="tag"># css</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/%E9%9A%8F%E7%AC%94/hello-world/" rel="next" title="雨后味道">
+                  <i class="fa fa-chevron-left"></i> 雨后味道
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/Css/cssfloat/" rel="prev" title="Css float浮动">
+                  Css float浮动 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先了解下BFC"><span class="nav-number">1.</span> <span class="nav-text">首先了解下BFC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BFC作用"><span class="nav-number">2.</span> <span class="nav-text">BFC作用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#margin的特殊现象"><span class="nav-number"></span> <span class="nav-text">margin的特殊现象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#margin-重叠现象"><span class="nav-number">1.</span> <span class="nav-text">margin 重叠现象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#正常现象："><span class="nav-number">1.0.1.</span> <span class="nav-text">正常现象：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#合并现象："><span class="nav-number">1.0.2.</span> <span class="nav-text">合并现象：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重叠现象解决方案："><span class="nav-number">1.1.</span> <span class="nav-text">重叠现象解决方案：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#margin的塌陷现象（重要）"><span class="nav-number"></span> <span class="nav-text">margin的塌陷现象（重要）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#塌陷现象："><span class="nav-number">1.</span> <span class="nav-text">塌陷现象：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#盒子塌陷"><span class="nav-number">2.</span> <span class="nav-text">盒子塌陷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#塌陷解决方法"><span class="nav-number">3.</span> <span class="nav-text">塌陷解决方法</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lrving</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/lrvings/lrvings.github.io" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;lrvings&#x2F;lrvings.github.io" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://space.bilibili.com/387429100" title="BiliBili &amp;rarr; https:&#x2F;&#x2F;space.bilibili.com&#x2F;387429100" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>BiliBili</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lrving</span>
+</div>
+<div class="powered-by">
+<span id="busuanzi_container_site_pv">
+总访问量<span style="color:#FA8072" id="busuanzi_value_site_pv"></span>次
+</span>|
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv">次</span>
+</span>
+</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共10.3k字</span>
+</div>
+<br>
+<span id="sitetime"></span>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var t1 = Date.UTC(2018,02,13,15,00,00); //北京时间2018-2-13 00:00:00
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+	siteTime();
+</script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'fNrIIEpzPFk99GNtfRlFtA7D-gzGzoHsz',
+    appKey: '2WMQSLiUxydQ68qLISeNhDhl',
+    placeholder: "Just go go",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
