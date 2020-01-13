@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="Lrving`s Blog">
 <meta property="og:description" content="数组的概念 所谓数组，就是将多个元素（通常是同一类型）按一定顺序排列放到一个集合中，那么这个集合我们就称之为数组。  数组的定义 数组是一个有序的列表，可以在数组中存放任意的数据，并且数组的长度可以动态的调整。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-12T09:37:01.341Z">
+<meta property="og:updated_time" content="2020-01-13T06:42:30.375Z">
 <meta name="twitter:card" content="summary">
   <link rel="canonical" href="http://lwju.xyz/JavaScript/JavaScript2/">
 
@@ -278,11 +278,19 @@
                 
               
 
-              <time title="创建时间：2020-01-12 17:22:53 / 修改时间：17:37:01" itemprop="dateCreated datePublished" datetime="2020-01-12T17:22:53+08:00">2020-01-12</time>
+              <time title="创建时间：2020-01-12 17:22:53" itemprop="dateCreated datePublished" datetime="2020-01-12T17:22:53+08:00">2020-01-12</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-13 14:42:30" itemprop="dateModified" datetime="2020-01-13T14:42:30+08:00">2020-01-13</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -348,14 +356,16 @@
 </li>
 <li>根据对象创建数组<ul>
 <li>var arr= new Object([]); <!--more-->
-<h3 id="获取数组元素"><a href="#获取数组元素" class="headerlink" title="获取数组元素"></a>获取数组元素</h3></li>
+<h3 id="数组元素访问"><a href="#数组元素访问" class="headerlink" title="数组元素访问"></a>数组元素访问</h3></li>
 </ul>
 </li>
 </ul>
 <p>数组的取值</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 格式：数组名[下标]	下标又称索引</span></span><br><span class="line"><span class="comment">// 功能：获取数组对应下标的那个值，如果下标不存在，则返回undefined。</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'red'</span>,, <span class="string">'green'</span>, <span class="string">'blue'</span>];</span><br><span class="line">arr[<span class="number">0</span>];	<span class="comment">// red</span></span><br><span class="line">arr[<span class="number">2</span>]; <span class="comment">// blue</span></span><br><span class="line">arr[<span class="number">3</span>]; <span class="comment">// 这个数组的最大下标为2,因此返回undefined</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="数组的属性"><a href="#数组的属性" class="headerlink" title="数组的属性"></a>数组的属性</h3><ul>
+<h3 id="数组的对象属性"><a href="#数组的对象属性" class="headerlink" title="数组的对象属性"></a>数组的对象属性</h3><p>一个数组，其实就是一个“数组对象”。把数组看成“对象”，是为了使用数组对象的属性或方法。<br>在JS中，所有的内容都是“对象”。<br>那么，length就是数组对象的一个属性。如：<br><code>var len = arrObj.length;</code></p>
+<ul>
+<li>length属性，可以动态获取数组的长度。</li>
 <li>length   设置或返回数组中元素的数目</li>
 <li>length   如果设置为0 表示清除数组，如果设置为3 表示保留到第三位</li>
 </ul>
@@ -375,7 +385,6 @@
 <li>filter()     “过滤”功能，数组中的每一项运行给定函数，返回满足过滤条件组成的数组</li>
 <li>reduce() 从数组的第一项开始，逐个遍历到最后</li>
 <li>reduceRight()    则从数组的最后一项开始，向前遍历到第一项</li>
-<li>forEach()    对数组进行遍历循环，对数组中的每一项运行给定函数</li>
 <li>forEach()   对数组进行遍历循环，对数组中的每一项运行给定函数</li>
 <li>sort()    对数组中的元素进行排序  会影响原数组 默认按照Unicode编码进行排序</li>
 </ul>
@@ -518,7 +527,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的概念"><span class="nav-number">1.</span> <span class="nav-text">数组的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的定义"><span class="nav-number">2.</span> <span class="nav-text">数组的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数组"><span class="nav-number">3.</span> <span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取数组元素"><span class="nav-number">4.</span> <span class="nav-text">获取数组元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的属性"><span class="nav-number">5.</span> <span class="nav-text">数组的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的方法"><span class="nav-number">6.</span> <span class="nav-text">数组的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历数组"><span class="nav-number">7.</span> <span class="nav-text">遍历数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组中新增元素"><span class="nav-number">8.</span> <span class="nav-text">数组中新增元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arguments对象"><span class="nav-number">9.</span> <span class="nav-text">arguments对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组"><span class="nav-number">10.</span> <span class="nav-text">二维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象数组"><span class="nav-number">11.</span> <span class="nav-text">对象数组</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的概念"><span class="nav-number">1.</span> <span class="nav-text">数组的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的定义"><span class="nav-number">2.</span> <span class="nav-text">数组的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数组"><span class="nav-number">3.</span> <span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组元素访问"><span class="nav-number">4.</span> <span class="nav-text">数组元素访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的对象属性"><span class="nav-number">5.</span> <span class="nav-text">数组的对象属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的方法"><span class="nav-number">6.</span> <span class="nav-text">数组的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历数组"><span class="nav-number">7.</span> <span class="nav-text">遍历数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组中新增元素"><span class="nav-number">8.</span> <span class="nav-text">数组中新增元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arguments对象"><span class="nav-number">9.</span> <span class="nav-text">arguments对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组"><span class="nav-number">10.</span> <span class="nav-text">二维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象数组"><span class="nav-number">11.</span> <span class="nav-text">对象数组</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
