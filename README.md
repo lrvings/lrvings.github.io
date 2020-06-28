@@ -9,6 +9,6 @@ features:
 - title: 构建体系
   details: 告别碎片化学习，帮助你构筑你自己的知识体系
 - title: 全栈开发
-  details: 以JavaScript开发为背景，全栈开发，DevOps
+  details: 以JavaScript开发为背景，全栈开发
 footer:  Copyright © 2018-present Lving
 ---
